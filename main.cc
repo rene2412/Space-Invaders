@@ -1,5 +1,6 @@
 #include "raylib.h"
 #include "game.h"
+
 int main() {
     //750x700 grid
     const int screenWidth = 750;
@@ -12,22 +13,19 @@ int main() {
     int windowPosY = screenCenterY - (screenHeight / 2);
     //open the window and set the grid parameters and title it 
     InitWindow(screenWidth, screenHeight, "Space Inavders");
-    SetWindowPosition(windowPosX, windowPosY);
     SetTargetFPS(60); //Set our game to run at 60 frames-per-second
     Color grey = {29, 29, 27, 255};
-    Game game;
-
-    // Main game loop
-    while (!WindowShouldClose()) {    // Detect window close button or ESC key
-      //handle keybaord input (left and right) 
-       game.Input(); 
-       //Draw a canvas
-        BeginDrawing();
+    // game object to be used for game logic
+    
+Game game;
+while (!WindowShouldClose()) {    // Detect window close button or ESC key
+      //handle keybaord input (left and right) and laser logic  
+        game.Input(); 
+        game.Update_Game();
         ClearBackground(grey);
-        game.Draw();
+	game.Draw();
 	EndDrawing();
     }
-
     // De-Initialization
     CloseWindow();        // Close window and OpenGL context
 
